@@ -2,18 +2,38 @@ from gpiozero import AngularServo
 from time import sleep
 
 #initialize servos
-handservo = AngularServo(18)
-wristservo = AngularServo(19)
-elbowservo = AngularServo(20)
-shoulderservo = AngularServo(21)
-baseservo = AngularServo(16)
+handservo = AngularServo(18,
+                         min_angle = 0,
+                         max_angle = 270,
+                         min_pulse_width = 0.0005,
+                         max_pulse_width = 0.0025)
+wristservo = AngularServo(19,
+                         min_angle = 0,
+                         max_angle = 270,
+                         min_pulse_width = 0.0005,
+                         max_pulse_width = 0.0025)
+elbowservo = AngularServo(20,
+                         min_angle = 0,
+                         max_angle = 270,
+                         min_pulse_width = 0.0005,
+                         max_pulse_width = 0.0025)
+shoulderservo = AngularServo(21,
+                         min_angle = 0,
+                         max_angle = 270,
+                         min_pulse_width = 0.0005,
+                         max_pulse_width = 0.0025)
+baseservo = AngularServo(16,
+                         min_angle = 0,
+                         max_angle = 270,
+                         min_pulse_width = 0.0005,
+                         max_pulse_width = 0.0025)
 
 
 
 
 def pos_reset():
     print("Reseting Position")
-    baseservo.angle = 0
+    baseservo.angle = -90
     sleep(1)
     shoulderservo.angle = 90
     sleep(1)
@@ -84,15 +104,17 @@ def pushaway():
     print("Push complete")
     pos_reset()
     
-    
-identified_object = "cucumber"
-sandwich_list = ['cucumber', 'bagel']
+#     
+# identified_object = "cucumber"
+# sandwich_list = ['cucumber', 'bagel']
+# 
+# if identified_object in sandwich_list:
+#     print("Sandwich Ingredient Detected")
+#     pickup()
+# else:
+#     print("Non-sandwich Object Detected")
+#     pushaway()
 
-if identified_object in sandwich_list:
-    print("Sandwich Ingredient Detected")
-    pickup()
-else:
-    print("Non-sandwich Object Detected")
-    pushaway()
-
-    
+baseservo.angle = 145
+shoulderservo.angle = 120
+elbowservo.angle = 80
