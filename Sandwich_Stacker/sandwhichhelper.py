@@ -7,7 +7,7 @@ import tensorflow as tf
 
 object_in_range = False
 identified_object = ""
-sandwich_list = ['cucumber', 'dumbbell', 'punching bag', 'pinwheel', 'oxygen mask']
+sandwich_list = ['bagel']
 
 #initialize distance sensor
 TRIG_PIN = 17
@@ -47,7 +47,7 @@ def smooth_move(servo, start, end):
     start = max(0, min(270, start))
     end = max(0, min(270, end))
     #ensure start on start value
-    step = 1 if start <= end else -1
+    step = 5 if start <= end else -5
     #base
     if servo == 'base':
         for i in range(start, end + step, step):
@@ -84,7 +84,7 @@ def pos_reset():
     sleep(1)
     wristservo.angle = 145
     sleep(1)
-    handservo.angle = 270
+    handservo.angle = 180
     print("Reset complete")
 pos_reset()
 def pickup():
@@ -94,27 +94,28 @@ def pickup():
     smooth_move('elbow', 200, 90)
     sleep(3)
     #rotate base
-    baseservo.angle = 200
+    baseservo.angle = 240
     sleep(3)
     #open hand
     handservo.angle = 0
     sleep(3)
     #shoulder + elbow reach down
-    smooth_move('shoulder', 250, 140)
+    smooth_move('shoulder', 250, 180)
     sleep(3)
-    #smooth_move('elbow', 90, 100)
+    smooth_move('elbow', 90, 110)
     sleep(3)
     #rotate wrist
-    wristservo.angle = 90
+    wristservo.angle = 0
     sleep(3)
     #close hand
     handservo.angle = 270
     sleep(3)
     #shoulder/elbow lift up
-    smooth_move('shoulder', 140, 180)
+    smooth_move('shoulder', 180, 180)
+    smooth_move('elbow', 110, 80)
     sleep(3)
     #rotate base
-    baseservo.angle = 90
+    baseservo.angle = 80
     sleep(3)
     #open hand
     handservo.angle = 0
@@ -130,13 +131,14 @@ def pushaway():
     smooth_move('elbow', 200, 90)
     sleep(3)
     #rotate base
-    baseservo.angle = 180
+    baseservo.angle = 200
     sleep(3)
     #shoulder + elbow reach down
-    smooth_move('shoulder', 250, 140)
+    smooth_move('shoulder', 250, 180)
+    smooth_move('elbow', 90, 150)
     sleep(3)   
     #rotate wrist
-    wristservo.angle = 90
+    wristservo.angle = 50
     sleep(1)
     #rotate base
     baseservo.angle = 270
@@ -164,6 +166,10 @@ def preprocess_image(image):
     return image
 
 def start_image_rec():
+    global object_in_range
+    global identified_object
+    global sandwich_list
+    
     #open camera
     cap = cv2.VideoCapture(0)
 
@@ -218,7 +224,7 @@ def start_image_rec():
         cap.release()
         #cv2.destroyAllWindows()
 
-#start_image_rec()
-pushaway()
+start_image_rec()
+#pushaway()
         
         
