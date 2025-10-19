@@ -115,8 +115,8 @@ def pushaway():
 #     print("Non-sandwich Object Detected")
 #     pushaway()
 
-baseservo.angle = 270
-shoulderservo.angle = 180
-elbowservo.angle = 150
-handservo.angle = 0
-wristservo.angle = 50
+baseservo.angle = 170
+shoulderservo.angle = 170
+elbowservo.angle = 170
+handservo.angle = 270
+wristservo.angle = 270
