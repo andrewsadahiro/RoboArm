@@ -23,7 +23,7 @@ int baseAngle = 90;
 int shoulderAngle = 140;
 int elbowAngle = 90;
 int wristAngle = 100;
-int handAngle = 0;
+int handAngle = 180;
 
 void setup() {
   Serial.begin(9600);
