@@ -36,13 +36,13 @@ distancesensor = DistanceSensor(echo=ECHO_PIN, trigger=TRIG_PIN)
 
 def reset():
     serial1.write(b'base,90\n')
-    time.sleep(0.5)
+    sleep(0.5)
     serial1.write(b'elbow,90\n')
-    time.sleep(0.5)
+    sleep(0.5)
     serial1.write(b'shoulder,140\n')
-    time.sleep(0.5)
+    sleep(0.5)
     serial1.write(b'wrist,100\n')
-    time.sleep(0.5)
+    sleep(0.5)
     serial1.write(b'hand,180\n')
     print('reset done')
 
@@ -51,42 +51,42 @@ def pickup():
     print("Picking up")
     #rotate elbow so arm pointing up
     serial1.write(b'elbow,30\n')
-    time.sleep(1)
+    sleep(1)
     #rotate base
     serial1.write(b'base,160\n')
-    time.sleep(1)
+    sleep(1)
     #open hand
     serial1.write(b'hand,00\n')
-    time.sleep(1)
+    sleep(1)
     #shoulder + elbow reach down
     serial1.write(b'elbow,40\n')
-    time.sleep(1)
+    sleep(1)
     serial1.write(b'shoulder,80\n')
-    time.sleep(1)
+    sleep(1)
     #rotate wrist
     serial1.write(b'wrist,30\n')
-    time.sleep(1)
+    sleep(1)
     #close hand
     serial1.write(b'hand,180\n')
-    time.sleep(1)
+    sleep(1)
     #shoulder/elbow lift up
     serial1.write(b'shoulder,140\n')
-    time.sleep(1)
+    sleep(1)
     serial1.write(b'elbow,30\n')
-    time.sleep(1)
+    sleep(1)
     #rotate base
     serial1.write(b'base,75\n')
-    time.sleep(1)
+    sleep(1)
     #reach back down
     serial1.write(b'elbow,40\n')
-    time.sleep(1)
+    sleep(1)
     serial1.write(b'shoulder,100\n')
-    time.sleep(1)
+    sleep(1)
     #open hand
     serial1.write(b'hand,0\n')
-    time.sleep(1)
+    sleep(1)
     print("Pickup complete")
-    time.sleep(10)
+    sleep(10)
     #reset
     reset()
     
@@ -95,23 +95,23 @@ def pushaway():
     print("Pushing Away")
     #rotate elbow so arm pointing up
     serial1.write(b'elbow,30\n')
-    time.sleep(1)
+    sleep(1)
     #rotate base
     serial1.write(b'base,180\n')
-    time.sleep(1)
+    sleep(1)
     #shoulder + elbow reach down
     serial1.write(b'elbow,40\n')
-    time.sleep(1)
+    sleep(1)
     serial1.write(b'shoulder,80\n')
-    time.sleep(1)
+    sleep(1)
     #rotate wrist
     serial1.write(b'wrist,30\n')
-    time.sleep(1)
+    sleep(1)
     #rotate base
     serial1.write(b'base,75\n')
-    time.sleep(1)
+    sleep(1)
     print("Pushaway complete")
-    time.sleep(10)
+    sleep(10)
     #reset
     reset()
 

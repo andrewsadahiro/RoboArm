@@ -84,6 +84,6 @@ def pushaway():
     reset()
 
     
-pushaway()
+#pushaway()
     
-#pickup()
+pickup()
